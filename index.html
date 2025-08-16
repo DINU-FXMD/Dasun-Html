@@ -8,53 +8,82 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #ffebee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            overflow: hidden;
+            padding: 0;
+            height: 200vh; /* Extra space for scrolling */
         }
+        
         .card {
-            background: balack;
+            background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 400px;
+            margin: 50px auto;
             opacity: 0;
             transform: scale(0.5);
             animation: fadeIn 1s forwards, float 3s ease-in-out infinite;
         }
+        
         h1 {
             color: #e91e63;
             margin-bottom: 20px;
         }
+        
         p {
             font-size: 18px;
             color: #333;
         }
+        
         .balloon {
             font-size: 30px;
             margin: 10px;
             display: inline-block;
             animation: float 2s ease-in-out infinite;
         }
+        
         .whatsapp-icons {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
         }
+        
         .whatsapp-icons a {
             font-size: 24px;
             color: #25D366;
             transition: transform 0.3s;
         }
+        
         .whatsapp-icons a:hover {
             transform: scale(1.2);
         }
-
+        
+        .photo-container {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .photo {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .photo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Animations */
         @keyframes fadeIn {
             to {
@@ -62,6 +91,7 @@
                 transform: scale(1);
             }
         }
+        
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -86,5 +116,37 @@
             <a href="https://wa.me/728899640" target="_blank">🎁</a>
         </div>
     </div>
+    
+    <div class="photo-container">
+        <img src="https://i.ibb.co/fdVqTksQ/5140.jpg" alt="Birthday Photo 1" class="photo" id="photo1">
+        <img src="https://i.ibb.co/wFX05BLj/2760.jpg" alt="Birthday Photo 2" class="photo" id="photo2">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if images are in viewport when scrolling
+            function checkVisibility() {
+                const photos = document.querySelectorAll('.photo');
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                photos.forEach((photo, index) => {
+                    const photoPosition = photo.getBoundingClientRect().top;
+                    
+                    // 3 inches ≈ 228 pixels (assuming 1 inch = 96 pixels)
+                    if (photoPosition < windowHeight - 228) {
+                        // Add delay between photos
+                        setTimeout(() => {
+                            photo.classList.add('visible');
+                        }, index * 300);
+                    }
+                });
+            }
+            
+            // Run on load and scroll
+            window.addEventListener('load', checkVisibility);
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
 </body>
 </html>
