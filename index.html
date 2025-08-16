@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday Dasun!</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .card {
             background: white;
@@ -21,27 +22,69 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 400px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeIn 1s forwards, float 3s ease-in-out infinite;
         }
         h1 {
             color: #e91e63;
+            margin-bottom: 20px;
         }
         p {
             font-size: 18px;
             color: #333;
         }
         .balloon {
-            font-size: 24px;
+            font-size: 30px;
             margin: 10px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+        .whatsapp-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .whatsapp-icons a {
+            font-size: 24px;
+            color: #25D366;
+            transition: transform 0.3s;
+        }
+        .whatsapp-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
 <body>
     <div class="card">
         <div class="balloon">🎈</div>
-        <h1>Happy Birthday!</h1>
-        <p>Wishing you a day filled with joy, laughter, and lots of cake! 🎂</p>
-        <p>May all your dreams come true this year! ✨</p>
+        <h1>Happy Birthday Dasun!</h1>
+        <p>Wishing you a fantastic day filled with joy! 🎂</p>
         <div class="balloon">🎉</div>
+        
+        <!-- WhatsApp Icons with Links -->
+        <div class="whatsapp-icons">
+            <a href="https://wa.me/728899640" target="_blank">📞</a>
+            <a href="https://wa.me/728899640" target="_blank">💬</a>
+            <a href="https://wa.me/728899640" target="_blank">🎁</a>
+        </div>
     </div>
 </body>
 </html>
