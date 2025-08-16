@@ -71,11 +71,11 @@
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .whatsapp-icons a {
-            font-size: 40px;
+            font-size: 30px;
             color: #25D366;
             transition: all 0.3s;
             background: white;
@@ -207,7 +207,7 @@
     <!-- Footer with Creation Info -->
     <div class="footer">
         <p>@Made By Dinuwh Bbh</p>
-        <p>@Made At Today 7.34 Am</p>
+    
     </div>
 
     <script>
@@ -243,7 +243,7 @@
             const timeString = now.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
             const dateString = now.toLocaleDateString();
             document.querySelector('.footer p:nth-child(2)').textContent = 
-                `@Made On ${dateString} At ${timeString}`;
+                `Today Is ${dateString} At ${timeString}`;
         });
     </script>
 </body>
