@@ -7,81 +7,133 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #ffebee;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             margin: 0;
             padding: 0;
-            height: 200vh; /* Extra space for scrolling */
+            min-height: 200vh;
+            color: #333;
         }
         
+        /* Birthday Card with Enhanced Design */
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             margin: 50px auto;
             opacity: 0;
-            transform: scale(0.5);
-            animation: fadeIn 1s forwards, float 3s ease-in-out infinite;
+            transform: scale(0.8);
+            animation: fadeIn 1s 0.5s forwards, float 4s ease-in-out infinite;
+            border: 2px solid #e91e63;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff8a00, #e91e63, #00bcd4, #ffeb3b);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientBG 8s ease infinite;
+            border-radius: 20px;
+            opacity: 0.3;
         }
         
         h1 {
             color: #e91e63;
             margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         p {
-            font-size: 18px;
-            color: #333;
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
         }
         
         .balloon {
-            font-size: 30px;
-            margin: 10px;
+            font-size: 40px;
+            margin: 15px;
             display: inline-block;
-            animation: float 2s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
         
+        /* WhatsApp Icons - Larger and More Stylish */
         .whatsapp-icons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 30px;
         }
         
         .whatsapp-icons a {
-            font-size: 24px;
+            font-size: 40px;
             color: #25D366;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
         }
         
         .whatsapp-icons a:hover {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(10deg);
+            background: #25D366;
+            color: white;
         }
         
+        /* Photo Container with Animation */
         .photo-container {
-            margin-top: 100px;
+            margin: 100px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 50px;
+            gap: 80px;
+            max-width: 800px;
         }
         
         .photo {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease;
+            border: 5px solid white;
         }
         
         .photo.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Footer with Creation Info */
+        .footer {
+            text-align: center;
+            margin: 50px 0;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #666;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Animations */
@@ -97,34 +149,76 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Loading Animation for Card */
+        @keyframes cardLoad {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .card.loaded {
+            animation: cardLoad 1.5s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <div class="card">
+    <!-- Birthday Card -->
+    <div class="card" id="birthdayCard">
         <div class="balloon">🎈</div>
         <h1>Happy Birthday Dasun!</h1>
-        <p>Wishing you a fantastic day filled with joy! 🎂</p>
+        <p>Wishing you a day filled with happiness, success and wonderful moments! 🎂</p>
         <div class="balloon">🎉</div>
         
-        <!-- WhatsApp Icons with Links -->
+        <!-- WhatsApp Icons - Larger Size -->
         <div class="whatsapp-icons">
-            <a href="https://wa.me/728899640" target="_blank">📞</a>
-            <a href="https://wa.me/728899640" target="_blank">💬</a>
-            <a href="https://wa.me/728899640" target="_blank">🎁</a>
+            <a href="https://wa.me/728899640" target="_blank" title="Call">📞</a>
+            <a href="https://wa.me/728899640" target="_blank" title="Message">💬</a>
+            <a href="https://wa.me/728899640" target="_blank" title="Gift">🎁</a>
         </div>
     </div>
     
+    <!-- Photo Gallery -->
     <div class="photo-container">
         <img src="https://i.ibb.co/fdVqTksQ/5140.jpg" alt="Birthday Photo 1" class="photo" id="photo1">
         <img src="https://i.ibb.co/wFX05BLj/2760.jpg" alt="Birthday Photo 2" class="photo" id="photo2">
     </div>
 
+    <!-- Footer with Creation Info -->
+    <div class="footer">
+        <p>@Made By Dinuwh Bbh</p>
+        <p>@Made At Today 7.34 Am</p>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if images are in viewport when scrolling
+            // Animate card on load
+            const card = document.getElementById('birthdayCard');
+            setTimeout(() => {
+                card.classList.add('loaded');
+            }, 300);
+            
+            // Photo animation on scroll
             function checkVisibility() {
                 const photos = document.querySelectorAll('.photo');
                 const scrollPosition = window.scrollY;
@@ -133,20 +227,24 @@
                 photos.forEach((photo, index) => {
                     const photoPosition = photo.getBoundingClientRect().top;
                     
-                    // 3 inches ≈ 228 pixels (assuming 1 inch = 96 pixels)
-                    if (photoPosition < windowHeight - 228) {
-                        // Add delay between photos
+                    if (photoPosition < windowHeight - 100) {
                         setTimeout(() => {
                             photo.classList.add('visible');
-                        }, index * 300);
+                        }, index * 500);
                     }
                 });
             }
             
-            // Run on load and scroll
             window.addEventListener('load', checkVisibility);
             window.addEventListener('scroll', checkVisibility);
+            
+            // Display current time in footer
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
+            const dateString = now.toLocaleDateString();
+            document.querySelector('.footer p:nth-child(2)').textContent = 
+                `@Made On ${dateString} At ${timeString}`;
         });
     </script>
 </body>
-</html>
+    </html>
